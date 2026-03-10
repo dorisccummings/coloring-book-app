@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react' // New: we need this for the buttons
+import posthog from 'posthog-js'
 import Header from '../components/Header'
 import ThumbnailCard from '../components/ThumbnailCard'
 import { coloringPages } from '../data/coloringPages'
@@ -40,7 +41,13 @@ export default function Home() {
             {categories.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => {
+                  setActiveCategory(cat)
+                  posthog.capture('category_filtered', {
+                    category: cat,
+                    results_count: cat === 'All' ? coloringPages.length : coloringPages.filter(p => p.category.includes(cat)).length,
+                  })
+                }}
                 className={`px-6 py-2 rounded-full font-bold transition-all shadow-sm ${
                   activeCategory === cat
                     ? 'bg-blue-600 text-white scale-105'

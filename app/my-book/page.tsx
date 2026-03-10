@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import posthog from 'posthog-js'
 import Header from '../../components/Header'
 import { useBookStore } from '../../store/useBookStore'
 // ADD 'GripVertical' TO THIS LINE:
@@ -29,12 +30,22 @@ export default function MyBookPage() {
       setOrderedBook((items) => {
         const oldIndex = items.findIndex((i) => i.id === active.id)
         const newIndex = items.findIndex((i) => i.id === over.id)
+        posthog.capture('book_reordered', {
+          page_id: active.id,
+          old_position: oldIndex,
+          new_position: newIndex,
+          book_size: items.length,
+        })
         return arrayMove(items, oldIndex, newIndex)
       })
     }
   }
 
   const handleFullPrint = () => {
+    posthog.capture('full_book_printed', {
+      page_count: orderedBook.length,
+      page_ids: orderedBook.map(p => p.id),
+    })
     const printWindow = window.open('', '_blank');
     if (!printWindow) return;
 

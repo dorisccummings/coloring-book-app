@@ -1,4 +1,5 @@
 'use client'
+import posthog from 'posthog-js'
 import { PageContent, useBookStore } from '../store/useBookStore'
 import { PlusCircle, CheckCircle2, Printer } from 'lucide-react'
 
@@ -7,8 +8,13 @@ export default function ThumbnailCard({ page }: { page: PageContent }) {
   const isInBook = book.some((p) => p.id === page.id)
 
   const handlePrint = () => {
+    posthog.capture('single_page_printed', {
+      page_id: page.id,
+      page_title: page.title,
+      category: Array.isArray(page.category) ? page.category[0] : page.category,
+    })
     const printWindow = window.open('', '_blank', 'width=800,height=1000');
-    
+
     if (printWindow) {
       printWindow.document.write(`
         <html>
@@ -80,8 +86,24 @@ export default function ThumbnailCard({ page }: { page: PageContent }) {
           </button>
 
           {/* Toggle Book Button */}
-          <button 
-            onClick={() => isInBook ? removePage(page.id) : addPage(page)}
+          <button
+            onClick={() => {
+              if (isInBook) {
+                removePage(page.id)
+                posthog.capture('page_removed_from_book', {
+                  page_id: page.id,
+                  page_title: page.title,
+                  category: Array.isArray(page.category) ? page.category[0] : page.category,
+                })
+              } else {
+                addPage(page)
+                posthog.capture('page_added_to_book', {
+                  page_id: page.id,
+                  page_title: page.title,
+                  category: Array.isArray(page.category) ? page.category[0] : page.category,
+                })
+              }
+            }}
             className={`flex items-center justify-center gap-2 w-full py-2 rounded-lg font-medium transition-colors ${
               isInBook ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}

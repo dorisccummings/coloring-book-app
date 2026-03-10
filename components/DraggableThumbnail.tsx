@@ -1,4 +1,5 @@
 'use client'
+import posthog from 'posthog-js'
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { PageContent } from '../store/useBookStore'
@@ -30,8 +31,15 @@ export function DraggableThumbnail({ page, onRemove }: { page: PageContent, onRe
         <p className="text-xs text-slate-500 uppercase">{Array.isArray(page.category) ? page.category[0] : page.category}</p>
       </div>
 
-      <button 
-        onClick={() => onRemove(page.id)}
+      <button
+        onClick={() => {
+          posthog.capture('page_removed_from_book_reorder', {
+            page_id: page.id,
+            page_title: page.title,
+            category: Array.isArray(page.category) ? page.category[0] : page.category,
+          })
+          onRemove(page.id)
+        }}
         className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
       >
         <Trash2 size={18} />
