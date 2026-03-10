@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 
 export interface PageContent {
   id: string
@@ -13,6 +13,8 @@ interface BookState {
   book: PageContent[]
   addPage: (page: PageContent) => void
   removePage: (id: string) => void
+  // Changed any[] to PageContent[] for better type safety
+  setBook: (newBook: PageContent[]) => void 
 }
 
 export const useBookStore = create<BookState>()(
@@ -28,9 +30,12 @@ export const useBookStore = create<BookState>()(
       removePage: (id) => set((state) => ({ 
         book: state.book.filter((p) => p.id !== id) 
       })),
+      // --- ADD THIS LINE ---
+      setBook: (newBook) => set({ book: newBook }), 
     }),
     {
-      name: 'coloring-book-storage', // This saves it to your browser's memory
+      name: 'coloring-book-storage', 
+      storage: createJSONStorage(() => localStorage), 
     }
   )
 )

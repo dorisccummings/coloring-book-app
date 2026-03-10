@@ -26,7 +26,7 @@ export function DraggableThumbnail({ page, onRemove }: { page: PageContent, onRe
 
       <img src={page.thumbnailUrl} alt={page.title} className="w-16 h-20 object-contain bg-slate-50 border rounded" />
       
-      <div className="flex-grow">
+      <div className="grow">
         <h3 className="font-bold text-slate-800">{page.title}</h3>
         <p className="text-xs text-slate-500 uppercase">{Array.isArray(page.category) ? page.category[0] : page.category}</p>
       </div>
