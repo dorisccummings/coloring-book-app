@@ -27,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* --- Keep core content centered and leaves sides open for adsense --- */}
+      <main className="max-w-7xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8">
         {children}
+      </main>
+        
 
         {/* 1. Google Analytics */}
         <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ''} />
@@ -49,10 +53,10 @@ export default function RootLayout({
           crossOrigin="anonymous" // <--- Change 'crossorigin' to 'crossOrigin'
           strategy="afterInteractive"
         />
-        
+
         <footer className="w-full py-6 text-center text-gray-400 text-xs">
-  <a href="/privacy" className="hover:underline">Privacy Policy</a>
-</footer>
+          <a href="/privacy" className="hover:underline">Privacy Policy</a>
+        </footer>
       </body>
     </html>
   );
