@@ -1,11 +1,12 @@
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-// This defines WHAT a coloring page is
 export interface PageContent {
   id: string
   title: string
-  category: string[]
   thumbnailUrl: string
+  category: string | string[]
+  altText?: string
 }
 
 interface BookState {
@@ -14,13 +15,22 @@ interface BookState {
   removePage: (id: string) => void
 }
 
-// This creates the actual store to hold your choices
-export const useBookStore = create<BookState>((set) => ({
-  book: [],
-  addPage: (page) => set((state) => ({ 
-    book: state.book.some(p => p.id === page.id) ? state.book : [...state.book, page] 
-  })),
-  removePage: (id) => set((state) => ({ 
-    book: state.book.filter((page) => page.id !== id) 
-  })),
-}))
+export const useBookStore = create<BookState>()(
+  persist(
+    (set) => ({
+      book: [],
+      addPage: (page) => set((state) => ({ 
+        // Prevents adding the same page twice
+        book: state.book.some(p => p.id === page.id) 
+          ? state.book 
+          : [...state.book, page] 
+      })),
+      removePage: (id) => set((state) => ({ 
+        book: state.book.filter((p) => p.id !== id) 
+      })),
+    }),
+    {
+      name: 'coloring-book-storage', // This saves it to your browser's memory
+    }
+  )
+)
