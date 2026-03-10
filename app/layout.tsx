@@ -29,6 +29,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {children}
+        
         {/* Microsoft Clarity Script */}
 <Script id="microsoft-clarity-analytics" strategy="afterInteractive">
   {`
@@ -39,6 +40,7 @@ export default function RootLayout({
     })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
   `}
 </Script>
+
       </body>
     </html>
   );
