@@ -42,6 +42,13 @@ export default function RootLayout({
             })(window, document, "clarity", "script", "${process.env.NEXT_PUBLIC_CLARITY_ID}");
           `}
         </Script>
+        {/* 3. Google AdSense */}
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9625124165094172"
+          crossOrigin="anonymous" // <--- Change 'crossorigin' to 'crossOrigin'
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
