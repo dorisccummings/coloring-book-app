@@ -15,7 +15,7 @@ export default function PrivacyPolicy() {
         <section className="mb-10">
           <h2 className="text-xl font-semibold mb-3 text-gray-800">Why This Site Exists</h2>
           <p className="mb-4">
-            When my kids were little, I struggled to find quality, free printable coloring pages. I created this tool to help parents and teachers get organized, easy-to-print pages for their "whole crew."
+            When my kids were little, I struggled to find quality, free printable coloring pages. I created this tool to help parents and teachers get organized, easy-to-print pages for the young artists in their lives.
           </p>
         </section>
 
