@@ -19,20 +19,25 @@ export default function PrivacyPolicy() {
           </p>
         </section>
 
-        <section className="mb-10 p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
-          <h2 className="text-lg font-semibold mb-3 text-gray-800">Testing & Analytics</h2>
+        {/* Analytics Section - Simplified and quiet */}
+        <section className="mb-10 p-6 rounded-2xl bg-white/40 border border-gray-100 shadow-sm">
+          <h2 className="text-lg font-semibold mb-3 text-gray-800">Analytics & Testing</h2>
           <p className="mb-4 text-sm">
-            I use this site as a <strong>live testing lab</strong>. I am a developer testing tools like <strong>Microsoft Clarity, PostHog, and Google Analytics</strong> to see how they work.
+            In addition to helping parents, I use this site as a <strong>live testing lab</strong>. I am a developer interested in how behavior analytics tools work so I can better understand which ones to recommend to others.
           </p>
           <p className="text-sm">
-            I have no interest in your personal information. I don't collect names or emails. I only watch how the site performs to improve it.
+            <strong>I am not interested in your personal information.</strong> I do not collect names, emails, or identifying data. I only look at how the site is used to see how these tools perform in a real-world setting. <br />
+            </p>
+            <p className="text-sm">
+            Current tools: <span className="font-medium">Google Analytics, Microsoft Clarity, and PostHog.</span> 
+            <span className="italic block mt-1 text-gray-400 text-xs">*Note: Other similar tools may be tested here in the future.*</span>
           </p>
         </section>
 
         <section className="mb-10">
           <h2 className="text-lg font-semibold mb-2 text-gray-800">Advertising</h2>
           <p className="text-sm">
-            We use <strong>Google AdSense</strong>. They use cookies to show ads. You can opt-out at <a href="https://adssettings.google.com" target="_blank" className="text-blue-500 underline">Google Ads Settings</a>.
+            To help keep this resource free and cover hosting costs, we show ads via <strong>Google AdSense</strong>. Google uses cookies to serve ads based on your visit to this site. You can manage your ad preferences or opt-out at <a href="https://adssettings.google.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 underline">Google Ads Settings</a>.
           </p>
         </section>
 
