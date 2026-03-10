@@ -49,6 +49,9 @@ export default function RootLayout({
           crossOrigin="anonymous" // <--- Change 'crossorigin' to 'crossOrigin'
           strategy="afterInteractive"
         />
+        <footer className="w-full py-6 text-center text-gray-400 text-xs">
+  <a href="/privacy" className="hover:underline">Privacy Policy</a>
+</footer>
       </body>
     </html>
   );
