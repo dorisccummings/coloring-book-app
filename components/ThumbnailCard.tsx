@@ -58,7 +58,7 @@ export default function ThumbnailCard({ page }: { page: PageContent }) {
     <div className="border rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all bg-white flex flex-col group">
       
       {/* ON-SCREEN "PAPER" VIEW (Centered with Whitespace) */}
-      <div className="aspect-[3/4] bg-white p-8 border-b flex items-center justify-center overflow-hidden">
+      <div className="aspect-3/4 bg-white p-8 border-b flex items-center justify-center overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img 
           src={page.thumbnailUrl} 
@@ -68,7 +68,7 @@ export default function ThumbnailCard({ page }: { page: PageContent }) {
       </div>
 
       {/* CARD CONTENT */}
-      <div className="p-4 flex-grow flex flex-col justify-between">
+      <div className="p-4 grow flex flex-col justify-between">
         <div>
           <h3 className="font-bold text-gray-800 truncate">{page.title}</h3>
           <span className="text-[10px] uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full inline-block mt-1">
@@ -108,7 +108,7 @@ export default function ThumbnailCard({ page }: { page: PageContent }) {
               isInBook ? 'bg-green-100 text-green-800 hover:bg-green-200' : 'bg-blue-600 text-white hover:bg-blue-700'
             }`}
           >
-            {isInBook ? <><CheckCircle2 size={18} /> Added</> : <><PlusCircle size={18} /> Add to Book</>}
+            {isInBook ? <><CheckCircle2 size={18} /> Added</> : <><PlusCircle size={18} /> Add to Coloring Book</>}
           </button>
         </div>
       </div>

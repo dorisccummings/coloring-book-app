@@ -13,7 +13,7 @@ export default function Header() {
       <Link href="/">
         <div className="flex items-center gap-2 text-2xl font-black text-blue-600 tracking-tight cursor-pointer">
           <BookOpen className="text-orange-500" />
-          Print&<span className="text-orange-500">Color</span>
+          Print &<span className="text-orange-500">Color</span>
         </div>
       </Link>
 

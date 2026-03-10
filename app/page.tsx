@@ -35,6 +35,25 @@ export default function Home() {
           <h1 className="text-4xl font-black text-slate-900 sm:text-5xl">
             Choose Your <span className="text-blue-600">Coloring Pages</span>
           </h1>
+          <div className="max-w-7xl mx-auto px-4">
+ 
+
+{/* --- COMPACT ONE-LINE BANNER --- */}
+<div className="bg-amber-50 border border-amber-200 rounded-full px-4 py-2 my-4 shadow-sm inline-flex items-center gap-2 max-w-full">
+  <span className="text-xl shrink-0">💡</span>
+  <p className="text-gray-800 text-sm md:text-base leading-none">
+    <strong>Have more than one artist?</strong>{" "}
+    <span className="bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded-md font-bold whitespace-nowrap">
+      Skip the manual sorting:
+    </span>{" "}
+    <span className="md:whitespace-nowrap">
+      Create a coloring book to get presorted pages straight off the printer.
+    </span>
+  </p>
+</div>
+
+  {/* Your coloring pages grid starts here... */}
+</div>
           
           {/* CATEGORY FILTER BUTTONS */}
           <div className="flex flex-wrap justify-center gap-2 mt-8">
