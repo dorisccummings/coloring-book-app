@@ -13,7 +13,6 @@ interface BookState {
   book: PageContent[]
   addPage: (page: PageContent) => void
   removePage: (id: string) => void
-  // Changed any[] to PageContent[] for better type safety
   setBook: (newBook: PageContent[]) => void 
 }
 
@@ -21,16 +20,18 @@ export const useBookStore = create<BookState>()(
   persist(
     (set) => ({
       book: [],
+      
       addPage: (page) => set((state) => ({ 
-        // Prevents adding the same page twice
         book: state.book.some(p => p.id === page.id) 
           ? state.book 
           : [...state.book, page] 
       })),
+
       removePage: (id) => set((state) => ({ 
         book: state.book.filter((p) => p.id !== id) 
       })),
-      // --- ADD THIS LINE ---
+
+      // This is the function that will fix your Header count sync issue!
       setBook: (newBook) => set({ book: newBook }), 
     }),
     {

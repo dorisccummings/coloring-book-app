@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useBookStore } from '../store/useBookStore'
 import { Printer, BookOpen } from 'lucide-react'
 import { usePathname } from 'next/navigation'
+import posthog from 'posthog-js'
 
 export default function Header() {
     // This talks to the store to see how many pages you've picked
@@ -21,14 +22,23 @@ export default function Header() {
             </Link>
 
             {/* Clicking this button takes you to your Drag & Drop "My Book" page */}
-            {!isMyBookPage && ( /* but not if you are already on that page */
-                <Link href="/my-book">
-                    <button className="flex items-center gap-2 px-6 py-2 bg-orange-500 text-white hover:bg-orange-600 font-bold rounded-full transition-all shadow-md active:scale-95">
-                        <Printer size={20} />
-                        My Coloring Book ({bookCount})
-                    </button>
-                </Link>
-            )}
+            {!isMyBookPage && (
+    <Link href="/my-book">
+        <button 
+            onClick={() => {
+                posthog.capture('navigated_to_my_book', {
+                    current_book_count: bookCount,
+                    entry_point: 'header_button',
+                    timestamp: new Date().toISOString()
+                });
+            }}
+            className="flex items-center gap-2 px-6 py-2 bg-orange-500 text-white hover:bg-orange-600 font-bold rounded-full transition-all shadow-md active:scale-95"
+        >
+            <Printer size={20} />
+            My Coloring Book ({bookCount})
+        </button>
+    </Link>
+)}
         </header>
     )
 }
