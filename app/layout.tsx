@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import Script from 'next/script';
 import "./globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
+import AnalyticsProvider from '../components/AnalyticsProvider' // Import the wrapper
+import React from 'react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,6 +29,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+       {/* 0. Analytics Lab (FullStory + PostHog check) */}
+        <AnalyticsProvider />
+        
         {/* --- Keep core content centered and leaves sides open for adsense --- */}
       <main className="max-w-7xl mx-auto min-h-screen px-4 sm:px-6 lg:px-8">
         {children}
@@ -60,4 +65,5 @@ export default function RootLayout({
       </body>
     </html>
   );
+  
 }
