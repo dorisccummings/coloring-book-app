@@ -8,7 +8,7 @@ export default function AnalyticsProvider() {
     // 2. THE INITIALIZER: This pulls the FullStory "recorder" into your site.
     // Without this, FullStory doesn't exist on your page.
     FullStory.init({ 
-        orgId: 'YOUR_ORG_ID', // Your unique 'license plate' from FullStory
+        orgId: 'o-24G7VJ-na1', // Your unique 'license plate' from FullStory
         devMode: process.env.NODE_ENV !== 'production' // Optional: Tells FS if you are testing locally
     });
 
